@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const Greeting = ({ username }) => {
   const date = new Date();
   const dayNumber = date.getDay();
@@ -8,10 +10,20 @@ const Greeting = ({ username }) => {
     : (dayNumber == 5) ? "Friday"
     : (dayNumber == 6) ? "Saturday"
     : "Sunday";
+  const [greetingType, setGreetingType] = useState("Hello");
+  const changeGreetingType = () => {
+    if (greetingType === 'Hello') {
+      setGreetingType('Goodbye');
+    } else {
+      setGreetingType('Hello');
+    };
+  };
+
   return (
     <div>
-      <h1>Hello {username}!</h1>
+      <h1>{greetingType} {username}!</h1>
       <p style={{color: 'blue'}}>Today is {currentDay}</p>
+      <button onClick={changeGreetingType}>Change Greeting</button>
     </div>
   )
 }

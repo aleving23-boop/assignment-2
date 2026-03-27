@@ -3,19 +3,7 @@ import Greeting from './Greeting';
 import UserInfo from './UserInfo';
 import RandomTask from './RandomTask';
 import Counter from './Counter';
-import TaskForm from './TaskForm';
-
-const taskArray = [
-  {id: 1, task: 'work'},
-  {id: 2, task: 'school'},
-  {id: 3, task: 'swimming'},
-  {id: 4, task: 'track'},
-  {id: 5, task: 'bowling'}
-];
-
-function taskArrayHtml(array) {
-  return array.map(task => <li key={task.id}>Task {task.id}: {task.task}</li>);
-}; 
+import TaskList from './TaskList';
 
 function handleAlert() {
   alert("Alert!");
@@ -23,6 +11,11 @@ function handleAlert() {
 
 const handleClick = () => {
   handleAlert();
+};
+
+const deleteTask = (buttonId, array) => {
+        const newArray = array.filter(item => item.id != buttonId);
+        return newArray; 
 };
 
 function App() {
@@ -34,8 +27,7 @@ function App() {
       <UserInfo handleClick={handleClick} />
       <RandomTask />
       <Counter />
-      <ul>{taskArrayHtml(taskArray)}</ul>
-      <TaskForm />
+      <TaskList deleteTask={deleteTask} />
     </div>
   )
 }
